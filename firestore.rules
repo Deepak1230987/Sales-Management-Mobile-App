@@ -1,0 +1,74 @@
+// firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Function to check if user is biller
+    function isBiller() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'biller';
+    }
+    
+    // Function to check if user is regular user
+    function isUser() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'user';
+    }
+    
+    // Function to check if user is admin or biller
+    function isAdminOrBiller() {
+      return isAdmin() || isBiller();
+    }
+    
+    // Function to get current user's phone number
+    function getUserPhoneNumber() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.phoneNumber;
+    }
+
+    // Users collection rules
+    match /users/{userId} {
+      // Users can read their own data, admins can read all users
+      allow read: if request.auth != null && 
+                   (request.auth.uid == userId || isAdmin());
+      
+      // Users can write their own data, only admins can write other users
+      allow write: if request.auth != null && 
+                    (request.auth.uid == userId || isAdmin());
+    }
+    
+    // Sales collection rules - admins and billers can read and write, users can read their own sales
+    match /sales/{saleId} {
+      allow read, write: if isAdminOrBiller();
+      allow read: if isUser() && resource.data.customerPhone == getUserPhoneNumber();
+    }
+    
+    // Items collection rules - admins and billers can read and write
+    match /items/{itemId} {
+      allow read, write: if isAdminOrBiller();
+    }
+    
+    // Claims collection rules - admins and billers can read and write, users can read their own claims
+    match /claims/{claimId} {
+      allow read, write: if isAdminOrBiller();
+      allow read: if isUser() && resource.data.phoneNo == getUserPhoneNumber();
+    }
+    
+    // Prizes collection rules - admins and billers can read and write
+    match /prizes/{prizeId} {
+      allow read, write: if isAdminOrBiller();
+    }
+    
+    // Default deny for everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

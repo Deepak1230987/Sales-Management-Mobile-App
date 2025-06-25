@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944852201205",
+    "project_id": "new-maurya-enterprises",
+    "storage_bucket": "new-maurya-enterprises.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944852201205:android:c85e9a43a0e9f30638dfbc",
+        "android_client_info": {
+          "package_name": "com.deep098.sales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGhku-tZ7UyZ6jkSmOf1YhEc6dKVFOOIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
