@@ -1,50 +1,109 @@
-# Welcome to your Expo app 👋
+# Sales Management Mobile Application README
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+This is a comprehensive mobile application built with React Native and Expo, designed to manage sales, prizes, and user claims. The application is structured to support three distinct user roles: Admin, Biller, and User, each with a specific set of permissions and functionalities. The backend is powered by Firebase, utilizing its Authentication and Firestore services.
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- **User Authentication:** Secure user registration and login system.
+- **Role-Based Access Control:** Different dashboards and functionalities for Admin, Biller, and User roles.
+- **Admin Dashboard:**
+  - Manage users
+  - Add, edit, and view items
+  - Add, edit, and view sales
+  - Manage claims (view details, update status)
+  - Manage prizes (add, edit, view)
+- **Biller Dashboard:**
+  - Add and view sales
+  - Manage items
+  - Handle claims
+- **User Dashboard:**
+  - View personal rewards and points
+  - Claim prizes
+- **Real-time Data Sync:** Firestore ensures that all data is up-to-date across all devices.
 
-2. Start the app
+## Tech Stack
 
-   ```bash
-   npx expo start
-   ```
+- **Frontend:**
+  - React Native
+  - Expo
+  - Expo Router for file-based routing
+- **Backend:**
+  - Firebase Authentication
+  - Firebase Firestore
+- **Styling:**
+  - Standard React Native stylesheets
+- **State Management:**
+  - React Context API (`AuthContext`)
 
-In the output, you'll find options to open the app in a
+## Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Node.js (LTS version recommended)
+- npm or yarn
+- Expo CLI
+- Android Studio or Xcode for emulators/simulators
 
-## Get a fresh project
+### Installation
 
-When you're ready, run:
+1.  **Clone the repository:**
 
-```bash
-npm run reset-project
+    ```bash
+    git clone <repository-url>
+    cd sales-app
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Firebase Setup
+
+1.  Create a new project on the [Firebase Console](https://console.firebase.google.com/).
+2.  Enable **Authentication** (Email/Password).
+3.  Set up **Firestore** and define your security rules in `firestore.rules`.
+4.  Obtain your Firebase project's configuration and place it in a secure file. For this project, you'll need the `google-services.json` for Android.
+5.  Make sure your `firestore.rules` are deployed to your Firebase project.
+
+### Running the App
+
+1.  **Start the development server:**
+    ```bash
+    npx expo start
+    ```
+2.  **Run on an emulator or physical device:**
+    - Press `a` to run on an Android emulator.
+    - Press `i` to run on an iOS simulator.
+    - Scan the QR code with the Expo Go app on your physical device.
+
+## Folder Structure
+
+```
+sales/
+├── app/
+│   ├── admin/         # Admin-specific screens
+│   ├── biller/        # Biller-specific screens
+│   ├── user/          # User-specific screens
+│   ├── components/    # Shared components
+│   ├── contexts/      # React contexts (e.g., AuthContext)
+│   ├── _layout.tsx    # Main layout
+│   ├── index.tsx      # Entry point/Home screen
+│   ├── login.jsx      # Login screen
+│   └── signup.jsx     # Signup screen
+├── assets/            # Images, fonts, etc.
+├── package.json       # Project dependencies and scripts
+└── tsconfig.json      # TypeScript configuration
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## User Roles
 
-## Learn more
+- **Admin:** Has full control over the application, including user management, item and sale management, and prize administration.
+- **Biller:** Responsible for recording sales and managing items. Can also process user claims.
+- **User:** The end-user of the application who can view their rewards and claim prizes based on their accumulated points.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Contributing
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Contributions are welcome! Please feel free to open an issue or submit a pull request.
