@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a comprehensive mobile application built with React Native and Expo, designed to manage sales, prizes, and user claims. The application is structured to support three distinct user roles: Admin, Biller, and User, each with a specific set of permissions and functionalities. The backend is powered by Firebase, utilizing its Authentication and Firestore services.
+This is a comprehensive mobile application built with React Native and Expo, designed to manage sales, prizes, and user claims. The application is structured to support three distinct user roles: Admin, Biller, and User, each with a specific set of permissions and functionalities. The backend is powered by Firebase, utilising its Authentication and Firestore services.
 
 ## Features
 
@@ -20,7 +20,8 @@ This is a comprehensive mobile application built with React Native and Expo, des
   - Handle claims
 - **User Dashboard:**
   - View personal rewards and points
-  - Claim prizes
+  - View personal purchases
+  - Claimed prizes
 - **Real-time Data Sync:** Firestore ensures that all data is up-to-date across all devices.
 
 ## Tech Stack
