@@ -1,4 +1,4 @@
-# Sales Management Mobile Application README
+# Sales Management Mobile Application 
 
 ## Overview
 
